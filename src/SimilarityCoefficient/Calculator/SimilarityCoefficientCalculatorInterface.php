@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PHPML\SimilarityCoefficient\Calculator;
 
 use PHPML\SimilarityCoefficient\SimilarityCoefficient;
@@ -15,5 +17,5 @@ interface SimilarityCoefficientCalculatorInterface
     public function calculate(
         array $rating1List,
         array $rating2List
-    );
+    ): SimilarityCoefficient;
 }

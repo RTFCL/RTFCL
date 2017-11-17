@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PHPML\SimilarityCoefficient;
 
 class SimilarityCoefficient
@@ -33,7 +35,7 @@ class SimilarityCoefficient
     /**
      * @return float
      */
-    public function toFloat()
+    public function toFloat(): float
     {
         return $this->value;
     }

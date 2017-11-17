@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PHPML;
 
 use PHPML\SimilarityCoefficient\Calculator\EuclideanDistanceCoefficientCalculator;
@@ -77,7 +79,7 @@ class CollaborativeFiltrationTest extends TestCase
             $ratingLists['person5']
         );
 
-        $this->assertSame(0, $person1ToPerson4Coefficient->toFloat());
+        $this->assertSame(0.0, $person1ToPerson4Coefficient->toFloat());
     }
 
     public function testSimilarityByPirsonCorrelationCoefficient()

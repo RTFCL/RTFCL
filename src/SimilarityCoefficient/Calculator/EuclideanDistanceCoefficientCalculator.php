@@ -15,7 +15,7 @@ class EuclideanDistanceCoefficientCalculator implements SimilarityCoefficientCal
     public function calculate(
         array $rating1List,
         array $rating2List
-    ) {
+    ): SimilarityCoefficient {
         // get list of common rates
         $squareSumList = [];
         foreach ($rating1List as $parameterName => $rating1ParameterValue)
