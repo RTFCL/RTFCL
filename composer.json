@@ -1,0 +1,13 @@
+{
+    "name": "sokil/php-ml",
+    "license": "MIT",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPML\\": ["src/", "tests/"]
+        }
+    }
+}
