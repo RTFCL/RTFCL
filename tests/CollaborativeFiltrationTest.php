@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PHPML;
 
-use PHPML\Correlation\Calculator\EuclideanDistanceCoefficientCalculator;
+use PHPML\Correlation\Calculator\EuclideanDistanceCorrelationCoefficientCalculator;
 use PHPML\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +14,7 @@ class CollaborativeFiltrationTest extends TestCase
     {
         return [
             'euclidean' => [
-                EuclideanDistanceCoefficientCalculator::class,
+                EuclideanDistanceCorrelationCoefficientCalculator::class,
             ],
             'pirson' => [
                 PirsonCorrelationCoefficientCalculator::class,
@@ -54,7 +54,7 @@ class CollaborativeFiltrationTest extends TestCase
             'Port' => 4.5,
         ];
 
-        $metric = new EuclideanDistanceCoefficientCalculator();
+        $metric = new EuclideanDistanceCorrelationCoefficientCalculator();
 
         // different taste
         $moreCorrelatedCoefficient = $metric->calculate(
@@ -98,7 +98,7 @@ class CollaborativeFiltrationTest extends TestCase
             'Gin' => 3.0,
         ];
 
-        $metric = new EuclideanDistanceCoefficientCalculator();
+        $metric = new EuclideanDistanceCorrelationCoefficientCalculator();
 
         // same taste
         $coefficient = $metric->calculate(
@@ -132,7 +132,7 @@ class CollaborativeFiltrationTest extends TestCase
             'Milk' => 5,
         ];
 
-        $metric = new EuclideanDistanceCoefficientCalculator();
+        $metric = new EuclideanDistanceCorrelationCoefficientCalculator();
 
         // opposite taste
         $coefficient = $metric->calculate(

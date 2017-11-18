@@ -6,7 +6,7 @@ namespace PHPML\Correlation\Calculator;
 
 use PHPML\Correlation\CorrelationCoefficient;
 
-class PirsonCorrelationCoefficientCalculator implements SimilarityCoefficientCalculatorInterface
+class PirsonCorrelationCoefficientCalculator implements CorrelationCoefficientCalculatorInterface
 {
     /**
      * @param array $rating1List

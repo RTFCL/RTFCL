@@ -6,7 +6,7 @@ namespace PHPML\Correlation\Calculator;
 
 use PHPML\Correlation\CorrelationCoefficient;
 
-interface SimilarityCoefficientCalculatorInterface
+interface CorrelationCoefficientCalculatorInterface
 {
     /**
      * @param array $rating1List

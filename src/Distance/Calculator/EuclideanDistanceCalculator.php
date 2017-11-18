@@ -1,24 +1,27 @@
 <?php
 
-namespace PHPML\Correlation\Calculator;
+namespace PHPML\Distance\Calculator;
 
-use PHPML\Correlation\CorrelationCoefficient;
+use PHPML\Distance\Distance;
+use PHPML\Distance\Calculator\Exception\NoCommonParametersException;
 
 /**
  * @see https://en.wikipedia.org/wiki/Euclidean_distance
  */
-class EuclideanDistanceCoefficientCalculator implements SimilarityCoefficientCalculatorInterface
+class EuclideanDistanceCalculator implements DistanceCalculatorInterface
 {
     /**
      * @param array $rating1List
      * @param array $rating2List
      *
-     * @return CorrelationCoefficient
+     * @return Distance
+     *
+     * @throws NoCommonParametersException
      */
     public function calculate(
         array $rating1List,
         array $rating2List
-    ): CorrelationCoefficient {
+    ): Distance {
         $squareSum = 0;
         $commonParametersCount = 0;
         foreach ($rating1List as $parameterName => $rating1ParameterValue)
@@ -38,13 +41,11 @@ class EuclideanDistanceCoefficientCalculator implements SimilarityCoefficientCal
             );
         }
 
-        // if no common rates, correlation is 0
         if ($commonParametersCount === 0) {
-            $coefficient = 0;
-        } else {
-            $coefficient = 1 / (1 + sqrt($squareSum));
+            throw new NoCommonParametersException('Sets has no common elements to calculate euclidean distance');
         }
 
-        return new CorrelationCoefficient($coefficient);
+        $distance = sqrt($squareSum);
+        return new Distance($distance);
     }
 }
