@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PHPML\Distance;
 
 /**
- * Distance must be float number greater 0
+ * Distance must be float number greater or equal 0
  */
 class Distance
 {
