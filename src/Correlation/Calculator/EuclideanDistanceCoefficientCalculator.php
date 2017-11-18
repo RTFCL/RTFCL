@@ -1,21 +1,24 @@
 <?php
 
-namespace PHPML\SimilarityCoefficient\Calculator;
+namespace PHPML\Correlation\Calculator;
 
-use PHPML\SimilarityCoefficient\SimilarityCoefficient;
+use PHPML\Correlation\CorrelationCoefficient;
 
+/**
+ * @see https://en.wikipedia.org/wiki/Euclidean_distance
+ */
 class EuclideanDistanceCoefficientCalculator implements SimilarityCoefficientCalculatorInterface
 {
     /**
      * @param array $rating1List
      * @param array $rating2List
      *
-     * @return SimilarityCoefficient
+     * @return CorrelationCoefficient
      */
     public function calculate(
         array $rating1List,
         array $rating2List
-    ): SimilarityCoefficient {
+    ): CorrelationCoefficient {
         // get list of common rates
         $squareSumList = [];
         foreach ($rating1List as $parameterName => $rating1ParameterValue)
@@ -37,6 +40,6 @@ class EuclideanDistanceCoefficientCalculator implements SimilarityCoefficientCal
             $coefficient = 1 / (1 + sqrt(array_sum($squareSumList)));
         }
 
-        return new SimilarityCoefficient($coefficient);
+        return new CorrelationCoefficient($coefficient);
     }
 }

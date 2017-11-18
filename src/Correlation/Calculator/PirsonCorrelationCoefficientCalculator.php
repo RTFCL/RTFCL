@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPML\SimilarityCoefficient\Calculator;
+namespace PHPML\Correlation\Calculator;
 
-use PHPML\SimilarityCoefficient\SimilarityCoefficient;
+use PHPML\Correlation\CorrelationCoefficient;
 
 class PirsonCorrelationCoefficientCalculator implements SimilarityCoefficientCalculatorInterface
 {
@@ -12,12 +12,12 @@ class PirsonCorrelationCoefficientCalculator implements SimilarityCoefficientCal
      * @param array $rating1List
      * @param array $rating2List
      *
-     * @return SimilarityCoefficient
+     * @return CorrelationCoefficient
      */
     public function calculate(
         array $rating1List,
         array $rating2List
-    ): SimilarityCoefficient {
+    ): CorrelationCoefficient {
 
     }
 }

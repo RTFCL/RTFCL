@@ -2,12 +2,18 @@
 
 declare(strict_types=1);
 
-namespace PHPML\SimilarityCoefficient;
+namespace PHPML\Correlation;
 
-class SimilarityCoefficient
+/**
+ * Correlation coefficient must be float number between -1 and 1
+ * 0 - when sets not correlated
+ * 1 - when sets fully correlated
+ * -1 - when set fully negatively correlated
+ */
+class CorrelationCoefficient
 {
     /**
-     * Similarity coefficient must be float number between 0 and 1
+     * Correlation coefficient must be float number between -1 and 1
      *
      * @var float
      */
@@ -17,7 +23,7 @@ class SimilarityCoefficient
      * @param float $value
      *
      * @throws \TypeError when value is not numeric
-     * @throws \OutOfRangeException when value is not in range 0..1
+     * @throws \OutOfRangeException when value is not in range -1..1
      */
     public function __construct($value)
     {
@@ -25,8 +31,8 @@ class SimilarityCoefficient
             throw new \TypeError('Similarity coefficient must be float number');
         }
 
-        if ($value < 0 || $value > 1) {
-            throw new \OutOfRangeException('Similarity coefficient must be float number between 0 and 1');
+        if ($value < -1 || $value > 1) {
+            throw new \OutOfRangeException('Similarity coefficient must be float number between -1 and 1');
         }
 
         $this->value = $value;

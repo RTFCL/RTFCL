@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PHPML;
 
-use PHPML\SimilarityCoefficient\Calculator\EuclideanDistanceCoefficientCalculator;
+use PHPML\Correlation\Calculator\EuclideanDistanceCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
 class CollaborativeFiltrationTest extends TestCase
