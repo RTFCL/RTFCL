@@ -5,85 +5,141 @@ declare(strict_types=1);
 namespace PHPML;
 
 use PHPML\Correlation\Calculator\EuclideanDistanceCoefficientCalculator;
+use PHPML\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
 class CollaborativeFiltrationTest extends TestCase
 {
-    public function testSimilarityByEuclideanDistanceCoefficient()
+    public function metricsDataProvider()
     {
-        $ratingLists = [
-            'person1' => [
-                'Whiskey' => 5.0,
-                'Brandy' => 4.7,
-                'Tequila' => 4.0,
-                'Rum' => 3.9,
-                'Gin' => 3.0,
-                'Wine' => 4.1,
-                'Beer' => 4.9,
-                'Gorilka' => 0.1,
+        return [
+            'euclidean' => [
+                EuclideanDistanceCoefficientCalculator::class,
             ],
-            'person2' => [
-                'Brandy' => 4.0,
-                'Beer' => 5,
-                'Gorilka' => 5,
-                'Port' => 4.5,
-            ],
-            'person3' => [
-                'Whiskey' => 4.0,
-                'Tequila' => 4.5,
-                'Gin' => 4.0,
-                'Gorilka' => 4.0,
-            ],
-            'person4' => [
-                'Whiskey' => 5.0,
-                'Brandy' => 4.7,
-                'Tequila' => 4.0,
-                'Rum' => 3.9,
-                'Gin' => 3.0,
-            ],
-            'person5' => [
-                'Apple Juice' => 5,
-                'Milk' => 5,
+            'pirson' => [
+                PirsonCorrelationCoefficientCalculator::class,
             ],
         ];
+    }
 
-        $euclideanDistanceCoefficient = new EuclideanDistanceCoefficientCalculator();
+    /**
+     * @dataProvider metricsDataProvider
+     *
+     * @param string $metricClassName
+     */
+    public function testCorrelationRelevance(string $metricClassName)
+    {
+        $sourceRating = [
+            'Whiskey' => 5.0,
+            'Brandy' => 4.7,
+            'Tequila' => 4.0,
+            'Rum' => 3.9,
+            'Gin' => 3.0,
+            'Wine' => 4.1,
+            'Beer' => 4.9,
+            'Gorilka' => 0.1,
+        ];
+
+        $moreCorrelatedRating = [
+            'Whiskey' => 4.0,
+            'Tequila' => 4.5,
+            'Gin' => 4.0,
+            'Gorilka' => 4.0,
+        ];
+
+        $lessCorrelatedRating = [
+            'Brandy' => 4.0,
+            'Beer' => 5,
+            'Gorilka' => 5,
+            'Port' => 4.5,
+        ];
+
+        $metric = new EuclideanDistanceCoefficientCalculator();
 
         // different taste
-        $person1ToPerson2Coefficient = $euclideanDistanceCoefficient->calculate(
-            $ratingLists['person1'],
-            $ratingLists['person2']
+        $moreCorrelatedCoefficient = $metric->calculate(
+            $sourceRating,
+            $moreCorrelatedRating
         );
 
 
         // like taste
-        $person1ToPerson3Coefficient = $euclideanDistanceCoefficient->calculate(
-            $ratingLists['person1'],
-            $ratingLists['person3']
+        $lessCorrelatedCoefficient = $metric->calculate(
+            $sourceRating,
+            $lessCorrelatedRating
         );
 
-        // like taste correlation bigger than different taste
-        $this->assertTrue($person1ToPerson2Coefficient->toFloat() < $person1ToPerson3Coefficient->toFloat());
-
-        // same taste
-        $person1ToPerson4Coefficient = $euclideanDistanceCoefficient->calculate(
-            $ratingLists['person1'],
-            $ratingLists['person4']
-        );
-
-        $this->assertSame(1.0, $person1ToPerson4Coefficient->toFloat());
-
-        // opposite taste
-        $person1ToPerson4Coefficient = $euclideanDistanceCoefficient->calculate(
-            $ratingLists['person1'],
-            $ratingLists['person5']
-        );
-
-        $this->assertSame(0.0, $person1ToPerson4Coefficient->toFloat());
+        $this->assertTrue($moreCorrelatedCoefficient->toFloat() > $lessCorrelatedCoefficient->toFloat());
     }
 
-    public function testSimilarityByPirsonCorrelationCoefficient()
+    /**
+     * @dataProvider metricsDataProvider
+     *
+     * @param string $metricClassName
+     */
+    public function testFullCorrelation(string $metricClassName)
     {
+        $sourceRating = [
+            'Whiskey' => 5.0,
+            'Brandy' => 4.7,
+            'Tequila' => 4.0,
+            'Rum' => 3.9,
+            'Gin' => 3.0,
+            'Wine' => 4.1,
+            'Beer' => 4.9,
+            'Gorilka' => 0.1,
+        ];
 
+        $fullyCorrelatedRating = [
+            'Whiskey' => 5.0,
+            'Brandy' => 4.7,
+            'Tequila' => 4.0,
+            'Rum' => 3.9,
+            'Gin' => 3.0,
+        ];
+
+        $metric = new EuclideanDistanceCoefficientCalculator();
+
+        // same taste
+        $coefficient = $metric->calculate(
+            $sourceRating,
+            $fullyCorrelatedRating
+        );
+
+        $this->assertSame(1.0, $coefficient->toFloat());
+    }
+
+    /**
+     * @dataProvider metricsDataProvider
+     *
+     * @param string $metricClassName
+     */
+    public function testNotCorrelated(string $metricClassName)
+    {
+        $sourceRating = [
+            'Whiskey' => 5.0,
+            'Brandy' => 4.7,
+            'Tequila' => 4.0,
+            'Rum' => 3.9,
+            'Gin' => 3.0,
+            'Wine' => 4.1,
+            'Beer' => 4.9,
+            'Gorilka' => 0.1,
+        ];
+
+         $notCorrelatedRating = [
+            'Apple Juice' => 5,
+            'Milk' => 5,
+        ];
+
+        $metric = new EuclideanDistanceCoefficientCalculator();
+
+        // opposite taste
+        $coefficient = $metric->calculate(
+            $sourceRating,
+            $notCorrelatedRating
+        );
+
+        $this->assertSame(0.0, $coefficient->toFloat());
     }
 }
