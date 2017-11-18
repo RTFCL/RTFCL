@@ -8,7 +8,7 @@ use PHPML\Correlation\Calculator\EuclideanDistanceCorrelationCoefficientCalculat
 use PHPML\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
-class CollaborativeFiltrationTest extends TestCase
+class CorrelationTest extends TestCase
 {
     public function metricsDataProvider()
     {
