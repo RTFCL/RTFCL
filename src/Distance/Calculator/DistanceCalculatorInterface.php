@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace PHPML\Distance\Calculator;
 
 use PHPML\Distance\Distance;
-use PHPML\Distance\Exception\NoCommonParametersException;
+use PHPML\Distance\Calculator\Exception\NoCommonParametersException;
 
 interface DistanceCalculatorInterface
 {
     /**
-     * @param array $rating1List
-     * @param array $rating2List
+     * @param array $identity1Scores
+     * @param array $identity2Scores
      *
      * @return Distance
      *
      * @throws NoCommonParametersException
      */
     public function calculate(
-        array $rating1List,
-        array $rating2List
+        array $identity1Scores,
+        array $identity2Scores
     ): Distance;
 }

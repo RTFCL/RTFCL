@@ -12,18 +12,18 @@ use PHPML\Distance\Calculator\EuclideanDistanceCalculator;
 class EuclideanDistanceCorrelationCoefficientCalculator implements CorrelationCoefficientCalculatorInterface
 {
     /**
-     * @param array $rating1List
-     * @param array $rating2List
+     * @param array $identity1Scores
+     * @param array $identity2Scores
      *
      * @return CorrelationCoefficient
      */
     public function calculate(
-        array $rating1List,
-        array $rating2List
+        array $identity1Scores,
+        array $identity2Scores
     ): CorrelationCoefficient {
 
         try {
-            $distance = (new EuclideanDistanceCalculator())->calculate($rating1List, $rating2List);
+            $distance = (new EuclideanDistanceCalculator())->calculate($identity1Scores, $identity2Scores);
             $coefficient = 1 / (1 + $distance->toFloat());
         } catch (NoCommonParametersException $e) {
             $coefficient = 0;

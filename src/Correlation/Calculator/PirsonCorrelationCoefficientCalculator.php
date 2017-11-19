@@ -9,54 +9,54 @@ use PHPML\Correlation\CorrelationCoefficient;
 class PirsonCorrelationCoefficientCalculator implements CorrelationCoefficientCalculatorInterface
 {
     /**
-     * @param array $rating1List
-     * @param array $rating2List
+     * @param array $identity1Scores
+     * @param array $identity2Scores
      *
      * @return CorrelationCoefficient
      */
     public function calculate(
-        array $rating1List,
-        array $rating2List
+        array $identity1Scores,
+        array $identity2Scores
     ): CorrelationCoefficient {
 
-        $rating1Sum = 0;
-        $rating2Sum = 0;
+        $identity1ScoreSum = 0;
+        $identity2ScoreSum = 0;
 
-        $rating1SquareSum = 0;
-        $rating2SquareSum = 0;
+        $identity1ScoreSquareSum = 0;
+        $identity2ScoreSquareSum = 0;
 
-        $ratingMultiplicationSum = 0;
+        $identityScoreMultiplicationSum = 0;
 
-        $commonParametersCount = 0;
+        $commonScoresCount = 0;
 
-        foreach ($rating1List as $parameterName => $rating1ParameterValue) {
+        foreach ($identity1Scores as $scoreName => $identity1ScoreValue) {
             // accept only parameters in both lists
-            if (empty($rating2List[$parameterName])) {
+            if (empty($identity2Scores[$scoreName])) {
                 continue;
             }
 
-            $commonParametersCount++;
+            $commonScoresCount++;
 
-            $rating2ParameterValue = $rating2List[$parameterName];
+            $identity2ScoreValue = $identity2Scores[$scoreName];
 
-            $rating1Sum += $rating1ParameterValue;
-            $rating2Sum += $rating2ParameterValue;
+            $identity1ScoreSum += $identity1ScoreValue;
+            $identity2ScoreSum += $identity2ScoreValue;
 
-            $rating1SquareSum += pow($rating1ParameterValue, 2);
-            $rating2SquareSum += pow($rating2ParameterValue, 2);
+            $identity1ScoreSquareSum += pow($identity1ScoreValue, 2);
+            $identity2ScoreSquareSum += pow($identity2ScoreValue, 2);
 
-            $ratingMultiplicationSum += $rating1ParameterValue * $rating2ParameterValue;
+            $identityScoreMultiplicationSum += $identity1ScoreValue * $identity2ScoreValue;
         }
 
-        if ($commonParametersCount === 0) {
+        if ($commonScoresCount === 0) {
             $coefficient = 0;
         } else {
-            $num = $ratingMultiplicationSum - ($rating1Sum * $rating2Sum / $commonParametersCount);
+            $num = $identityScoreMultiplicationSum - ($identity1ScoreSum * $identity2ScoreSum / $commonScoresCount);
             $den = sqrt(
                 (
-                    $rating1SquareSum - pow($rating1Sum, 2) / $commonParametersCount
+                    $identity1ScoreSquareSum - pow($identity1ScoreSum, 2) / $commonScoresCount
                 ) * (
-                    $rating2SquareSum - pow($rating2Sum, 2) / $commonParametersCount
+                    $identity2ScoreSquareSum - pow($identity2ScoreSum, 2) / $commonScoresCount
                 )
             );
 

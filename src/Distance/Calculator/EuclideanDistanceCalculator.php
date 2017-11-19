@@ -11,29 +11,29 @@ use PHPML\Distance\Calculator\Exception\NoCommonParametersException;
 class EuclideanDistanceCalculator implements DistanceCalculatorInterface
 {
     /**
-     * @param array $rating1List
-     * @param array $rating2List
+     * @param array $identity1Scores
+     * @param array $identity2Scores
      *
      * @return Distance
      *
      * @throws NoCommonParametersException
      */
     public function calculate(
-        array $rating1List,
-        array $rating2List
+        array $identity1Scores,
+        array $identity2Scores
     ): Distance {
         $squareSum = 0;
         $commonParametersCount = 0;
-        foreach ($rating1List as $parameterName => $rating1ParameterValue)
+        foreach ($identity1Scores as $parameterName => $rating1ParameterValue)
         {
             // accept only parameters in both lists
-            if (empty($rating2List[$parameterName])) {
+            if (empty($identity2Scores[$parameterName])) {
                 continue;
             }
 
             $commonParametersCount++;
 
-            $rating2ParameterValue = $rating2List[$parameterName];
+            $rating2ParameterValue = $identity2Scores[$parameterName];
 
             $squareSum += pow(
                 $rating1ParameterValue - $rating2ParameterValue,

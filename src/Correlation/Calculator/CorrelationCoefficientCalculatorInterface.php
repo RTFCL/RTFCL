@@ -9,13 +9,13 @@ use PHPML\Correlation\CorrelationCoefficient;
 interface CorrelationCoefficientCalculatorInterface
 {
     /**
-     * @param array $rating1List
-     * @param array $rating2List
+     * @param array $identity1Scores
+     * @param array $identity2Scores
      *
      * @return CorrelationCoefficient
      */
     public function calculate(
-        array $rating1List,
-        array $rating2List
+        array $identity1Scores,
+        array $identity2Scores
     ): CorrelationCoefficient;
 }
