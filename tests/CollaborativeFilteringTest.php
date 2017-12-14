@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Forecasting;
+namespace RTFCL\Forecasting;
 
-use PHPML\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
+use RTFCL\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
 class CollaborativeFilteringTest extends TestCase

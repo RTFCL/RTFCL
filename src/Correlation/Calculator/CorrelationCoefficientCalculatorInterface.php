@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Correlation\Calculator;
+namespace RTFCL\Correlation\Calculator;
 
-use PHPML\Correlation\CorrelationCoefficient;
+use RTFCL\Correlation\CorrelationCoefficient;
 
 interface CorrelationCoefficientCalculatorInterface
 {

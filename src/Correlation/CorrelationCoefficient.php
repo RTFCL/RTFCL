@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Correlation;
+namespace RTFCL\Correlation;
 
 /**
  * Correlation coefficient must be float number between -1 and 1

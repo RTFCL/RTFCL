@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Forecasting;
+namespace RTFCL\Forecasting;
 
-use PHPML\Correlation\Calculator\CorrelationCoefficientCalculatorInterface;
-use PHPML\Correlation\CorrelationCoefficient;
+use RTFCL\Correlation\Calculator\CorrelationCoefficientCalculatorInterface;
+use RTFCL\Correlation\CorrelationCoefficient;
 
 /**
  * @see https://en.wikipedia.org/wiki/Collaborative_filtering

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Math\Type;
+namespace RTFCL\Math\Type;
 
 use PHPUnit\Framework\TestCase;
 

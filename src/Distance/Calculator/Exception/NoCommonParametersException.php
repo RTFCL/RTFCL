@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Distance\Calculator\Exception;
+namespace RTFCL\Distance\Calculator\Exception;
 
-use PHPML\Exception\PHPMLException;
+use RTFCL\Exception\PHPMLException;
 
 /**
  * If two sets has no common parameters to calculate distance

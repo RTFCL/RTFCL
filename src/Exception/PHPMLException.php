@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Exception;
+namespace RTFCL\Exception;
 
 /**
  * Base library exception class

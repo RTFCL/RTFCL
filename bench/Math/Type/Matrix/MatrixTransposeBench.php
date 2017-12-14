@@ -1,8 +1,8 @@
 <?php
 
-namespace PHPML\Math\Type\Matrix;
+namespace RTFCL\Math\Type\Matrix;
 
-use PHPML\Math\Type\Matrix;
+use RTFCL\Math\Type\Matrix;
 
 /**
  * @BeforeMethods({"init"})

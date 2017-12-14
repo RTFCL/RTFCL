@@ -1,9 +1,9 @@
 <?php
 
-namespace PHPML\Distance\Calculator;
+namespace RTFCL\Distance\Calculator;
 
-use PHPML\Distance\Distance;
-use PHPML\Distance\Calculator\Exception\NoCommonParametersException;
+use RTFCL\Distance\Distance;
+use RTFCL\Distance\Calculator\Exception\NoCommonParametersException;
 
 /**
  * @see https://en.wikipedia.org/wiki/Euclidean_distance

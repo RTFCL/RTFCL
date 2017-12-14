@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PHPML;
+namespace RTFCL;
 
-use PHPML\Correlation\Calculator\EuclideanDistanceCorrelationCoefficientCalculator;
-use PHPML\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
+use RTFCL\Correlation\Calculator\EuclideanDistanceCorrelationCoefficientCalculator;
+use RTFCL\Correlation\Calculator\PirsonCorrelationCoefficientCalculator;
 use PHPUnit\Framework\TestCase;
 
 class CorrelationTest extends TestCase

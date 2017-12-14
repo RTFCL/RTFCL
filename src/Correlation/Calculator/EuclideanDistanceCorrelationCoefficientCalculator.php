@@ -1,10 +1,10 @@
 <?php
 
-namespace PHPML\Correlation\Calculator;
+namespace RTFCL\Correlation\Calculator;
 
-use PHPML\Correlation\CorrelationCoefficient;
-use PHPML\Distance\Calculator\Exception\NoCommonParametersException;
-use PHPML\Distance\Calculator\EuclideanDistanceCalculator;
+use RTFCL\Correlation\CorrelationCoefficient;
+use RTFCL\Distance\Calculator\Exception\NoCommonParametersException;
+use RTFCL\Distance\Calculator\EuclideanDistanceCalculator;
 
 /**
  * @see https://en.wikipedia.org/wiki/Euclidean_distance

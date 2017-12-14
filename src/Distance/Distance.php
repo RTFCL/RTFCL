@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPML\Distance;
+namespace RTFCL\Distance;
 
 /**
  * Distance must be float number greater or equal 0
