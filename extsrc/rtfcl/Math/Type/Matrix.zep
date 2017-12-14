@@ -9,7 +9,7 @@ class Matrix
         let this->elements = elements;
     }
 
-    public function transpose() -> Matrix
+    public function transpose() -> <Matrix>
     {
         array transposedElements = [];
 
