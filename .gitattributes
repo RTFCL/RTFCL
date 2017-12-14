@@ -1,0 +1,5 @@
+/bench export-ignore
+/extsrc export-ignore
+/tests export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
