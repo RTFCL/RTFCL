@@ -4,7 +4,7 @@ class Matrix
 {
     private elements;
 
-    public function __construct(elements)
+    public function __construct(array elements)
     {
         let this->elements = elements;
     }
@@ -13,6 +13,7 @@ class Matrix
     {
         array transposedElements = [];
 
+        var rowId, columnId, row, value;
         for rowId, row in this->elements {
             for columnId, value in row {
                 let transposedElements[columnId][rowId] = value;
