@@ -48,6 +48,11 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, __construct) {
 
 }
 
+/**
+ * Transpose and get new matrix
+ *
+ * @return Matrix
+ */
 PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 
 	zend_string *_3, *_6$$3;
@@ -69,7 +74,7 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 	ZEPHIR_INIT_VAR(&transposedElements);
 	array_init(&transposedElements);
 	zephir_read_property(&_0, this_ptr, SL("elements"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "rtfcl/Math/Type/Matrix.zep", 25);
+	zephir_is_iterable(&_0, 0, "rtfcl/Math/Type/Matrix.zep", 28);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
 	{
 		ZEPHIR_INIT_NVAR(&rowId);
@@ -80,7 +85,7 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 		}
 		ZEPHIR_INIT_NVAR(&row);
 		ZVAL_COPY(&row, _1);
-		zephir_is_iterable(&row, 0, "rtfcl/Math/Type/Matrix.zep", 23);
+		zephir_is_iterable(&row, 0, "rtfcl/Math/Type/Matrix.zep", 26);
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&row), _5$$3, _6$$3, _4$$3)
 		{
 			ZEPHIR_INIT_NVAR(&columnId);
@@ -102,6 +107,29 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &transposedElements);
 	zephir_check_call_status();
 	RETURN_MM();
+
+}
+
+/**
+ * Transpose self
+ */
+PHP_METHOD(RTFCL_Math_Type_Matrix, transposeInPlace) {
+
+	zval *this_ptr = getThis();
+
+
+
+}
+
+/**
+ * Get array
+ */
+PHP_METHOD(RTFCL_Math_Type_Matrix, toArray) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "elements");
 
 }
 

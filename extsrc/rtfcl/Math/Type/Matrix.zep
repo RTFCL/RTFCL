@@ -9,6 +9,11 @@ class Matrix
         let this->elements = elements;
     }
 
+    /**
+     * Transpose and get new matrix
+     *
+     * @return Matrix
+     */
     public function transpose() -> <Matrix>
     {
         array transposedElements = [];
@@ -21,5 +26,21 @@ class Matrix
         }
 
         return new self(transposedElements);
+    }
+
+    /**
+     * Transpose self
+     */
+    public function transposeInPlace() -> void
+    {
+
+    }
+
+    /**
+     * Get array
+     */
+    public function toArray() -> array
+    {
+        return this->elements;
     }
 }

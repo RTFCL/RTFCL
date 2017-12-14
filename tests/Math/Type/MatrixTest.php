@@ -17,6 +17,21 @@ class MatrixTest extends TestCase
             ]
         );
 
+        $transposedMatrix = new Matrix(
+            [
+                [1, 5],
+                [2, 6],
+                [3, 7],
+                [4, 8],
+            ]
+        );
+
+        $this->assertEquals(
+            $transposedMatrix,
+            $matrix->transpose()
+        );
+
+        // transpose of transposed matrix give initial matrix
         $this->assertEquals(
             $matrix,
             $matrix->transpose()->transpose()
