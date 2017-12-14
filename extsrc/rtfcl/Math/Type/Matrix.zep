@@ -2,29 +2,20 @@ namespace RTFCL\Math\Type;
 
 class Matrix
 {
-    /**
-     * @var float[][]
-     */
     private elements;
 
-    /**
-     * @param float[][] $elements
-     */
-    public function __construct(array $elements)
+    public function __construct(elements)
     {
-        this->elements = elements;
+        let this->elements = elements;
     }
 
-    /**
-     * @return Matrix
-     */
     public function transpose() -> Matrix
     {
-        transposedElements = [];
+        array transposedElements = [];
 
         for rowId, row in this->elements {
             for columnId, value in row {
-                transposedElements[columnId][rowId] = value;
+                let transposedElements[columnId][rowId] = value;
             }
         }
 
