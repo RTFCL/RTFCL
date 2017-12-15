@@ -27,7 +27,7 @@ class MatrixTransposeBench
     }
 
     /**
-     * @Revs(1)
+     * @Revs(50)
      */
     public function benchTranspose()
     {
