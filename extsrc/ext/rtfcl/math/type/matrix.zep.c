@@ -69,15 +69,14 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, __construct) {
 PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 
 	zend_bool _1, _5$$3;
-	zval rowId, columnId, _0, _4$$3, _8$$4, _9$$4, _10$$4;
-	zval transposedElements, transposedElementsRow$$3;
+	zval _0, _4$$3, _8$$4, _9$$4, _10$$4;
+	long rowId = 0, columnId = 0;
+	zval transposedElements, transposedElementsRow;
 	zend_long ZEPHIR_LAST_CALL_STATUS, _2, _3, _6$$3, _7$$3;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&transposedElements);
-	ZVAL_UNDEF(&transposedElementsRow$$3);
-	ZVAL_UNDEF(&rowId);
-	ZVAL_UNDEF(&columnId);
+	ZVAL_UNDEF(&transposedElementsRow);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_8$$4);
@@ -102,10 +101,9 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 			} else {
 				_1 = 1;
 			}
-			ZEPHIR_INIT_NVAR(&columnId);
-			ZVAL_LONG(&columnId, _2);
-			ZEPHIR_INIT_NVAR(&transposedElementsRow$$3);
-			array_init(&transposedElementsRow$$3);
+			columnId = _2;
+			ZEPHIR_INIT_NVAR(&transposedElementsRow);
+			array_init(&transposedElementsRow);
 			zephir_read_property(&_4$$3, this_ptr, SL("rows"), PH_NOISY_CC | PH_READONLY);
 			_7$$3 = (zephir_get_numberval(&_4$$3) - 1);
 			_6$$3 = 0;
@@ -120,15 +118,14 @@ PHP_METHOD(RTFCL_Math_Type_Matrix, transpose) {
 					} else {
 						_5$$3 = 1;
 					}
-					ZEPHIR_INIT_NVAR(&rowId);
-					ZVAL_LONG(&rowId, _6$$3);
+					rowId = _6$$3;
 					zephir_read_property(&_8$$4, this_ptr, SL("elements"), PH_NOISY_CC | PH_READONLY);
-					zephir_array_fetch(&_9$$4, &_8$$4, &rowId, PH_NOISY | PH_READONLY, "rtfcl/Math/Type/Matrix.zep", 31 TSRMLS_CC);
-					zephir_array_fetch(&_10$$4, &_9$$4, &columnId, PH_NOISY | PH_READONLY, "rtfcl/Math/Type/Matrix.zep", 31 TSRMLS_CC);
-					zephir_array_update_zval(&transposedElementsRow$$3, &rowId, &_10$$4, PH_COPY | PH_SEPARATE);
+					zephir_array_fetch_long(&_9$$4, &_8$$4, rowId, PH_NOISY | PH_READONLY, "rtfcl/Math/Type/Matrix.zep", 32 TSRMLS_CC);
+					zephir_array_fetch_long(&_10$$4, &_9$$4, columnId, PH_NOISY | PH_READONLY, "rtfcl/Math/Type/Matrix.zep", 32 TSRMLS_CC);
+					zephir_array_update_long(&transposedElementsRow, rowId, &_10$$4, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 				}
 			}
-			zephir_array_update_zval(&transposedElements, &columnId, &transposedElementsRow$$3, PH_COPY | PH_SEPARATE);
+			zephir_array_update_long(&transposedElements, columnId, &transposedElementsRow, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 		}
 	}
 	object_init_ex(return_value, rtfcl_math_type_matrix_ce);

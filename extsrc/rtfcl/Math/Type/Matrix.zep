@@ -23,10 +23,11 @@ class Matrix
     public function transpose() -> <Matrix>
     {
         array transposedElements = [];
+        array transposedElementsRow;
 
-        var rowId, columnId;
+        long rowId, columnId;
         for columnId in range(0, this->cols - 1) {
-            array transposedElementsRow = [];
+            let transposedElementsRow = [];
             for rowId in range(0, this->rows - 1) {
                 let transposedElementsRow[rowId] = this->elements[rowId][columnId];
             }
