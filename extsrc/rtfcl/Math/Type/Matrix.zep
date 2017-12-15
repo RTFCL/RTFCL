@@ -4,9 +4,15 @@ class Matrix
 {
     private elements;
 
+    private rows;
+
+    private cols;
+
     public function __construct(array elements)
     {
         let this->elements = elements;
+        let this->rows = count(elements);
+        let this->cols = count(elements[0]);
     }
 
     /**
@@ -18,11 +24,13 @@ class Matrix
     {
         array transposedElements = [];
 
-        var rowId, columnId, row, value;
-        for rowId, row in this->elements {
-            for columnId, value in row {
-                let transposedElements[columnId][rowId] = value;
+        var rowId, columnId;
+        for columnId in range(0, this->cols - 1) {
+            array transposedElementsRow = [];
+            for rowId in range(0, this->rows - 1) {
+                let transposedElementsRow[rowId] = this->elements[rowId][columnId];
             }
+            let transposedElements[columnId] = transposedElementsRow;
         }
 
         return new self(transposedElements);
